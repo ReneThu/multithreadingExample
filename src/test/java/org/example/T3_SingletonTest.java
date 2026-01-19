@@ -1,15 +1,15 @@
 package org.example;
 
+import com.vmlens.api.AllInterleavings;
+import com.vmlens.api.Runner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+class T3_SingletonTest {
 
-//Maybe drop this and just add volatile in the example
-class SingletonTests_four {
-
-    //correct
+    //Not correct
     static final class NaiveSingleton {
-        private static volatile NaiveSingleton instance;
+        private static NaiveSingleton instance;
         private static NaiveSingleton getInstance() {
             if (instance == null) {
                 synchronized (NaiveSingleton .class) {
@@ -29,6 +29,10 @@ class SingletonTests_four {
 
     @Test
     void test() {
-        //TODO
+        try (var interleavings = new AllInterleavings("Singleton 3", true)) {
+            while (interleavings.hasNext()) {
+                Runner.runParallel(NaiveSingleton::getInstance, NaiveSingleton::getInstance);
+            }
+        }
     }
 }

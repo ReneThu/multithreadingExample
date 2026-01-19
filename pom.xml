@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <junit.version>5.10.0</junit.version>
+        <com.vmlens.version>1.2.24</com.vmlens.version>
     </properties>
 
     <dependencies>
@@ -36,6 +37,13 @@
             <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.vmlens</groupId>
+            <artifactId>api</artifactId>
+            <version>${com.vmlens.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -59,6 +67,26 @@
                 <configuration>
                     <useModulePath>false</useModulePath>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.vmlens</groupId>
+                <artifactId>vmlens-maven-plugin</artifactId>
+                <version>${com.vmlens.version}</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+
+                            <includes>
+                                <include>**/*CT.java</include>
+                            </includes>
+                            <failIfNoTests>true</failIfNoTests>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

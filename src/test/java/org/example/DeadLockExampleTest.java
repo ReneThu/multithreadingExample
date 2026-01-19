@@ -1,10 +1,13 @@
 package org.example;
 
+import com.vmlens.api.AllInterleavings;
+import com.vmlens.api.Runner;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CountDownLatch;
 
-public class DeadLockExample {
+public class DeadLockExampleTest {
 
     private final Object lockA = new Object();
     private final Object lockB = new Object();
@@ -36,12 +39,19 @@ public class DeadLockExample {
     }
 
     @Test
+    @Disabled
     void always_deadlocks() throws Exception {
-        DeadLockExample d = new DeadLockExample();
+        DeadLockExampleTest d = new DeadLockExampleTest();
         CountDownLatch start = new CountDownLatch(1);
 
-        Thread t1 = new Thread(() -> { await(start); d.ab(); }, "t1");
-        Thread t2 = new Thread(() -> { await(start); d.ba(); }, "t2");
+        Thread t1 = new Thread(() -> {
+            await(start);
+            d.ab();
+        }, "t1");
+        Thread t2 = new Thread(() -> {
+            await(start);
+            d.ba();
+        }, "t2");
 
         t1.start();
         t2.start();
@@ -49,6 +59,19 @@ public class DeadLockExample {
 
         t1.join();
         t2.join();
+    }
+
+    @Test
+    @Disabled
+    void test() {
+        try (var interleavings = new AllInterleavings("Singleton one", true)) {
+            while (interleavings.hasNext()) {
+                Runner.runParallel(
+                        this::ab,
+                        this::ba
+                );
+            }
+        }
     }
 
     private static void await(CountDownLatch latch) {

@@ -1,9 +1,12 @@
 package org.example;
 
+import com.vmlens.api.AllInterleavings;
+import com.vmlens.api.Runner;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 //not correct
-public class SingletonTests_seven {
+public class T7_SingletonTest {
 
     interface Factory {
         Singleton getInstance();
@@ -40,6 +43,19 @@ public class SingletonTests_seven {
 
     @Test
     void test() {
-        //todo
+        try (var interleavings = new AllInterleavings("Singleton 7", true)) {
+            while (interleavings.hasNext()) {
+                Runner.runParallel(
+                        () -> {
+                            var instance = new UnsafeLocalDCLFactory().getInstance();
+                            Assertions.assertEquals(1, instance.x);
+                        },
+                        () -> {
+                            var instance = new UnsafeLocalDCLFactory().getInstance();
+                            Assertions.assertEquals(1, instance.x);
+                        }
+                );
+            }
+        }
     }
 }

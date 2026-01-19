@@ -1,15 +1,18 @@
 package org.example;
 
+import com.vmlens.api.AllInterleavings;
+import com.vmlens.api.Runner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class SingletonTests_one {
+class T1_SingletonTest {
 
     //Not correct
     static final class NaiveSingleton {
         static NaiveSingleton instance;
 
-        private NaiveSingleton() {}
+        private NaiveSingleton() {
+        }
 
         static NaiveSingleton getInstance() {
             if (instance == null) {
@@ -26,6 +29,10 @@ class SingletonTests_one {
 
     @Test
     void test() {
-        //TODO
+        try (var interleavings = new AllInterleavings("Singleton 1", true)) {
+            while (interleavings.hasNext()) {
+                Runner.runParallel(NaiveSingleton::getInstance, NaiveSingleton::getInstance);
+            }
+        }
     }
 }
