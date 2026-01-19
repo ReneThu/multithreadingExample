@@ -106,11 +106,10 @@ layout: full
   </div>
   <div class="right">
     <h1 class="headline">Christian Lutnik</h1>
-    <div class="addonestuff">Software Developer at Dynatrace</div>
+    <div class="addonestuff">Software Developer II at Dynatrace</div>
     <ul class="bullet-points">
-      <li>Point one about you</li>
-      <li>Point two about you</li>
-      <li>Point three about you</li>
+      <li>Working on OpenFeature</li>
+      <li>Mostly Java</li>
     </ul>
   </div>
 </div>
@@ -216,6 +215,41 @@ layout: center
 }
 </style>
 
+
+---
+layout: center
+---
+
+<h1 class="headline">How does VMLens Work?</h1>
+
+<div class="content">
+  <ul class="bullet-points">
+    <li v-click>Attaches a Java Agent</li>
+    <li v-click>Agent keeps track of what the code does</li>
+    <li v-click>Agent intercepts calls to <code>hasNext()</code></li>
+    <li v-click>Creates report of test suite</li>
+  </ul>
+</div>
+
+
+<style>
+.content {
+  margin-top: 2rem;
+  text-align: left;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bullet-points {
+  font-size: 1.3rem;
+  line-height: 2;
+}
+
+.bullet-points li {
+  margin-bottom: 1rem;
+}
+</style>
 ---
 layout: center
 ---
@@ -351,4 +385,4 @@ layout: center
 layout: center
 ---
 
-<h1 v-click class="headline">How does VMLense work?</h1><br />
+<h1 v-click class="headline">VMLens in Practice</h1><br />
