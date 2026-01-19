@@ -4,12 +4,15 @@ import com.vmlens.api.AllInterleavings;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static com.vmlens.api.Runner.runParallel;
 
 class T0_1_NonVolatileAndVolatileTest {
     static class Counter {
         int i = 0;
         volatile int v = 0;
+        final AtomicInteger atomicInteger = new AtomicInteger(0);
 
         void increment() {
             i++;
@@ -17,6 +20,10 @@ class T0_1_NonVolatileAndVolatileTest {
 
         void incrementVolatile() {
             v++;
+        }
+
+        void incrementAtomic() {
+            atomicInteger.incrementAndGet();
         }
     }
 
@@ -44,6 +51,20 @@ class T0_1_NonVolatileAndVolatileTest {
                         c::increment
                 );
                 Assertions.assertEquals(2, c.i);
+            }
+        }
+    }
+
+    @Test
+    void atomicTest() {
+        try (var interleavings = new AllInterleavings("Atomic increment", true)) {
+            for (var interleaving : interleavings) {
+                var c = new Counter();
+                runParallel(
+                        c::incrementAtomic,
+                        c::incrementAtomic
+                );
+                Assertions.assertEquals(2, c.atomicInteger.get());
             }
         }
     }
