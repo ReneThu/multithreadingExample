@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class T11_VolatileBarrierTest {
 
     static class VolatileBarrier {
-        private volatile int data = 0;
+        private int data = 0;
         private boolean ready = false;
 
         public void writer() {

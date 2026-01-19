@@ -9,7 +9,7 @@ public class T10_VolatileBarrierTest {
 
     static class VolatileBarrier {
         private int data = 0;           
-        private volatile boolean ready = false;  
+        private boolean ready = false;
 
         public void writer() {
             data = 42;      
@@ -25,7 +25,7 @@ public class T10_VolatileBarrierTest {
     }
 
     @Test
-    void testVolatileBarrier() {
+    void testVolatileBarrier() throws InterruptedException {
         try (var interleavings = new AllInterleavings("VolatileBarrier_10", true)) {
             while (interleavings.hasNext()) {
                 var barrier = new VolatileBarrier();

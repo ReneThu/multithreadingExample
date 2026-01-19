@@ -5,11 +5,10 @@ import com.vmlens.api.Runner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
 import java.util.function.Supplier;
 
 
-class T6_SingletonTest {
+class T5_3_SingletonTest {
 
     public final class LazyRace<T> {
         private T v;
