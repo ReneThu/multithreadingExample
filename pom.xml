@@ -79,10 +79,6 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-
-                            <includes>
-                                <include>**/*CT.java</include>
-                            </includes>
                             <failIfNoTests>true</failIfNoTests>
                         </configuration>
                     </execution>
