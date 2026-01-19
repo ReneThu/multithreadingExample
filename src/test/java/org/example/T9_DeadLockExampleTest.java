@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CountDownLatch;
 
-public class DeadLockExampleTest {
+public class T9_DeadLockExampleTest {
 
     private final Object lockA = new Object();
     private final Object lockB = new Object();
@@ -41,7 +41,7 @@ public class DeadLockExampleTest {
     @Test
     @Disabled
     void always_deadlocks() throws Exception {
-        DeadLockExampleTest d = new DeadLockExampleTest();
+        T9_DeadLockExampleTest d = new T9_DeadLockExampleTest();
         CountDownLatch start = new CountDownLatch(1);
 
         Thread t1 = new Thread(() -> {

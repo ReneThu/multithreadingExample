@@ -2,7 +2,7 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
-class VmLensDemoTest {
+class T0_VmLensDemoTest {
     static class Counter {
         int i = 0;
 
