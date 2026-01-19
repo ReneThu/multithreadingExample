@@ -5,11 +5,8 @@ import com.vmlens.api.Runner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-//Maybe drop this and just add volatile in the example
 class T4_SingletonTest {
 
-    //correct
     static final class NaiveSingleton {
         private static volatile NaiveSingleton instance;
         private static NaiveSingleton getInstance() {

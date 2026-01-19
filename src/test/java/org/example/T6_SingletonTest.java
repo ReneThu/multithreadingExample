@@ -10,7 +10,6 @@ import java.util.function.Supplier;
 
 class T6_SingletonTest {
 
-    //Somewhat correct
     public final class LazyRace<T> {
         private T v;
         private final Supplier<? extends T> factory;

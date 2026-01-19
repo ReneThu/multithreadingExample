@@ -5,7 +5,6 @@ import com.vmlens.api.Runner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-//not correct
 public class T7_SingletonTest {
 
     interface Factory {
