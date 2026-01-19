@@ -5,7 +5,7 @@ import com.vmlens.api.Runner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class T7_SingletonTest {
+class T7_SingletonTest {
 
     interface Factory {
         Singleton getInstance();
@@ -21,7 +21,7 @@ public class T7_SingletonTest {
         }
     }
 
-    public class UnsafeLocalDCLFactory implements Factory {
+    static class UnsafeLocalDCLFactory implements Factory {
         private Singleton instance;
 
         @Override
@@ -49,10 +49,12 @@ public class T7_SingletonTest {
                         () -> {
                             var instance = factory.getInstance();
                             Assertions.assertEquals(1, instance.x);
+                            Assertions.assertEquals(2, instance.y);
                         },
                         () -> {
                             var instance = factory.getInstance();
                             Assertions.assertEquals(1, instance.x);
+                            Assertions.assertEquals(2, instance.y);
                         }
                 );
             }

@@ -49,10 +49,12 @@ public class T8_SingletonTest {
                         () -> {
                             var instance = factory.getInstance();
                             Assertions.assertEquals(1, instance.x);
+                            Assertions.assertEquals(2, instance.y);
                         },
                         () -> {
                             var instance = factory.getInstance();
                             Assertions.assertEquals(1, instance.x);
+                            Assertions.assertEquals(2, instance.y);
                         }
                 );
             }

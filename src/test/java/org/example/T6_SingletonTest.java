@@ -36,7 +36,7 @@ class T6_SingletonTest {
     void test() {
         try (var interleavings = new AllInterleavings("Singleton 6", true)) {
             while (interleavings.hasNext()) {
-                LazyRace<Data> lr = new LazyRace(() -> new Data());
+                LazyRace<Data> lr = new LazyRace(Data::new);
                 Runner.runParallel(
                         () -> {
                             Data d = lr.get();

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class T10_VolatileBarrierTest {
 
-    static class CorrectVolatileBarrier {
+    static class VolatileBarrier {
         private int data = 0;           
         private volatile boolean ready = false;  
 
@@ -25,19 +25,15 @@ public class T10_VolatileBarrierTest {
     }
 
     @Test
-    void testCorrectVolatileBarrier() {
+    void testVolatileBarrier() {
         try (var interleavings = new AllInterleavings("VolatileBarrier_10", true)) {
             while (interleavings.hasNext()) {
-                var barrier = new CorrectVolatileBarrier();
+                var barrier = new VolatileBarrier();
                 final int[] result = {-1};
 
                 Runner.runParallel(
-                        () -> {
-                            barrier.writer();
-                        },
-                        () -> {
-                            result[0] = barrier.reader();
-                        }
+                        barrier::writer,
+                        () -> result[0] = barrier.reader()
                 );
 
                 Assertions.assertTrue(

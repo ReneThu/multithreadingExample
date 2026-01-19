@@ -11,7 +11,7 @@ class T4_SingletonTest {
         private static volatile NaiveSingleton instance;
         private static NaiveSingleton getInstance() {
             if (instance == null) {
-                synchronized (NaiveSingleton .class) {
+                synchronized (NaiveSingleton.class) {
                     if (instance == null) {
                         instance = new NaiveSingleton();
                     }
