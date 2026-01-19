@@ -37,7 +37,7 @@ class T0_1_NonVolatileAndVolatileTest {
     @Test
     void nonVolatileTest() {
         try (var interleavings = new AllInterleavings("Non Volatile increment", true)) {
-            while (interleavings.hasNext()) {
+            for (var interleaving : interleavings) {
                 var c = new Counter();
                 runParallel(
                         c::increment,
