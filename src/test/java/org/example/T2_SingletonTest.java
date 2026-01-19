@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 class T2_SingletonTest {
 
-    //Correct
     static final class NaiveSingleton {
         static NaiveSingleton instance;
 
