@@ -64,7 +64,7 @@ public class DeadLockExampleTest {
     @Test
     @Disabled
     void test() {
-        try (var interleavings = new AllInterleavings("Singleton one", true)) {
+        try (var interleavings = new AllInterleavings("Deadlock", true)) {
             while (interleavings.hasNext()) {
                 Runner.runParallel(
                         this::ab,

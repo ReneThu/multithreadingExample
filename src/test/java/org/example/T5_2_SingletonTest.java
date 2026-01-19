@@ -37,14 +37,13 @@ class T5_2_SingletonTest {
     void test() {
         try (var interleavings = new AllInterleavings("Singleton 5.2", true)) {
             while (interleavings.hasNext()) {
+                LazyRace<Data> lr = new LazyRace(() -> new Data());
                 Runner.runParallel(
                         () -> {
-                            LazyRace<Data> lr = new LazyRace(() -> new Data());
                             Data d = lr.get();
                             Assertions.assertEquals(42, d.i);
                         },
                         () -> {
-                            LazyRace<Data> lr = new LazyRace(() -> new Data());
                             Data d = lr.get();
                             Assertions.assertEquals(42, d.i);
                         }

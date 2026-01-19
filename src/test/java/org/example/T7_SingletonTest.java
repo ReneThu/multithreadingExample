@@ -45,13 +45,14 @@ public class T7_SingletonTest {
     void test() {
         try (var interleavings = new AllInterleavings("Singleton 7", true)) {
             while (interleavings.hasNext()) {
+                var factory = new UnsafeLocalDCLFactory();
                 Runner.runParallel(
                         () -> {
-                            var instance = new UnsafeLocalDCLFactory().getInstance();
+                            var instance = factory.getInstance();
                             Assertions.assertEquals(1, instance.x);
                         },
                         () -> {
-                            var instance = new UnsafeLocalDCLFactory().getInstance();
+                            var instance = factory.getInstance();
                             Assertions.assertEquals(1, instance.x);
                         }
                 );
