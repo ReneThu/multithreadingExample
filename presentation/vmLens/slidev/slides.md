@@ -394,7 +394,7 @@ layout: center
 layout: center
 ---
 <div>
-  <h1 v-click>How Does OpenTelemetry Achieve This?</h1>
+  <h1 v-click>How Does VMLens Achieve This?</h1>
 </div>
 <div class="image-container">
   <img 
