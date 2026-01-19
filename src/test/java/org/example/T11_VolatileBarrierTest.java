@@ -4,7 +4,7 @@ import com.vmlens.api.AllInterleavings;
 import com.vmlens.api.Runner;
 import org.junit.jupiter.api.Test;
 
-public class T11_VolatileBarrierIncorrectTest {
+public class T11_VolatileBarrierTest {
 
     static class IncorrectVolatileBarrier {
         private volatile int data = 0;
@@ -25,7 +25,7 @@ public class T11_VolatileBarrierIncorrectTest {
 
     @Test
     void testIncorrectVolatileBarrier() {
-        try (var interleavings = new AllInterleavings("VolatileBarrierIncorrect", true)) {
+        try (var interleavings = new AllInterleavings("VolatileBarrier_11", true)) {
             while (interleavings.hasNext()) {
                 var barrier = new IncorrectVolatileBarrier();
                 final int[] result = {-1};

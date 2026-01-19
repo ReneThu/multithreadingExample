@@ -5,7 +5,7 @@ import com.vmlens.api.Runner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class T10_VolatileBarrierCorrectTest {
+public class T10_VolatileBarrierTest {
 
     static class CorrectVolatileBarrier {
         private int data = 0;           
@@ -26,7 +26,7 @@ public class T10_VolatileBarrierCorrectTest {
 
     @Test
     void testCorrectVolatileBarrier() {
-        try (var interleavings = new AllInterleavings("VolatileBarrierCorrect", true)) {
+        try (var interleavings = new AllInterleavings("VolatileBarrier_10", true)) {
             while (interleavings.hasNext()) {
                 var barrier = new CorrectVolatileBarrier();
                 final int[] result = {-1};
