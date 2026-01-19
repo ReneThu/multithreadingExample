@@ -9,9 +9,10 @@ class T3_SingletonTest {
 
     static final class NaiveSingleton {
         private static NaiveSingleton instance;
+
         private static NaiveSingleton getInstance() {
             if (instance == null) {
-                synchronized (NaiveSingleton .class) {
+                synchronized (NaiveSingleton.class) {
                     if (instance == null) {
                         instance = new NaiveSingleton();
                     }
